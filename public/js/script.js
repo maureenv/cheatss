@@ -1,5 +1,13 @@
 // only Front-End JS can manipulate the DOM
 
+$("a").each(function(i,a){
+  var path = ($(a).attr("href"));
+  console.log(path);
+  if (path == decodeURIComponent(
+  window.location.pathname)){
+    $(a).addClass("active")
+  }
+})
 /* animate through each letter */
 $.fn.retype = function(delay) {
     var el = this,
