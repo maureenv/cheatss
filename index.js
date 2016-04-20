@@ -37,6 +37,10 @@ app.get("/:title", function(req, res){
 });
 
 
-app.listen(3001, function(){
-  console.log("It's alive");
-})
+// app.listen(3001, function(){
+//   console.log("It's alive");
+// })
+
+app.listen(app.get("port"), function(){
+  console.log("I work");
+});
