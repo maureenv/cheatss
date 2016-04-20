@@ -6,6 +6,7 @@ var db      =require("./db/connection");
 app.use("/public", express.static("public")) // the "/public" part can say anything, but "public" must say public.
 
 app.set("view engine", "hbs"); //every express app needs a view engine
+app.set("port", process.env.PORT || 3001); // needed for HEROKU
 app.engine(".hbs", hbs({
   extname: ".hbs", // find files that end in .hbs in views/ folder
   partialsDir: "views/",
