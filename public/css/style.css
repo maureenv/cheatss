@@ -1,0 +1,182 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+a {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: gray;
+  font-family: arial;
+  display: block;
+  text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+}
+
+a:hover, a:active, .active {
+  color: white;
+  background-color: #ff861c;
+  /*-moz-box-shadow:    inset 0 0 10px #631400;
+  -webkit-box-shadow: inset 0 0 10px #631400;
+  box-shadow:         inset 0 0 10px #631400;*/
+}
+
+body{
+  background: rgba(78,0,82,1);
+  background: -moz-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(78,0,82,1)), color-stop(100%, rgba(207,31,151,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: linear-gradient(135deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e0052', endColorstr='#cf1f97', GradientType=1 );
+  background: url('../images/background_fallback.jpg') no-repeat center center fixed;
+  background: url('../images/background.svg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.wrapper {
+  width:100%;
+  height: 100%;
+  position:relative;
+  clear: both;
+  padding: 0;
+  margin: 0;
+}
+
+.main_content {
+  /* for centering text that goes inside .content */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top:0px;
+  margin-bottom: 0;
+
+}
+
+.content {
+  width:100%;
+  padding-left: 230px;
+  box-sizing: border-box;
+}
+.sidebar {
+  top: 0;
+  left: 0;
+  background: #3775e8;
+  height: 100%;
+  width: 230px;
+  margin-right: 230px;
+  position: fixed;
+  background-color: white;
+  -webkit-box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
+  -moz-box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
+  box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
+}
+
+.heading {
+  padding-left: 230px;
+  /* add padding-right to match, padding-left of content; */
+  max-width: 1000px;
+}
+
+h1{
+  color: white;
+  font-size: 140px;
+  font-family: arial;
+  text-align: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-weight: 300;
+  text-shadow: 2px 2px rgb(6,26,79);
+}
+
+.cheat {
+  font-size: 90px;
+}
+
+h2 {
+  margin-top: -15px;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+}
+
+.codeAnimate{
+  color: #53034f;
+  font-size: 20px;
+  position: absolute;
+  z-index: -10;
+  margin-left: -100px;
+  /* Make text unselectable */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* CSS FOR SAFARI *******************/
+
+_::-webkit-full-page-media, _:future, :root .safari_only {
+  /*http://stackoverflow.com/questions/16348489/is-there-a-css-hack-for-safari-only-not-chrome*/
+  background: rgba(78,0,82,1);
+  background: -moz-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(78,0,82,1)), color-stop(100%, rgba(207,31,151,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  background: linear-gradient(135deg, rgba(78,0,82,1) 0%, rgba(207,31,151,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e0052', endColorstr='#cf1f97', GradientType=1 );
+  background: url('../images/background_fallback.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+_::-webkit-full-page-media, _:future, :root .heading {
+  margin-top: 15%;
+}
+
+_::-webkit-full-page-media, _:future, :root .codeAnimate {
+  margin-left: -100px;
+}
+
+/* CSS for firefox ******************/
+@-moz-document url-prefix() {
+  .codeAnimate {
+    margin-top: -300px;
+    margin-left: -100px;
+  }
+}
+
+/****************** STYLING FOR EACH SHEET OF PAPER *****************/
+
+.sheet {
+  margin: 50px auto;
+  width: 800px;
+  height: 1000px;
+  -webkit-box-shadow: 3px 0px 16px 3px rgba(6,26,79,0.52);
+  -moz-box-shadow: 3px 0px 16px 3px rgba(6,26,79,0.52);
+  box-shadow: 3px 0px 16px 3px rgba(6,26,79,0.52);
+  background-color: #fafaf2;
+  background-image: url('http://api.thumbr.it/whitenoise-361x370.png?background=fafaf2ff&noise=c9b49e&density=40&opacity=14');
+}
+
+h3 {
+  padding-top: 30px;
+  text-align: center;
+  font-size: 80px;
+  color: gray;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+}
