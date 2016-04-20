@@ -1,0 +1,22 @@
+{
+  "name": "cheatss",
+  "version": "1.0.0",
+  "description": "A website for CSS tutorials",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maureenv/cheatss.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maureenv/cheatss/issues"
+  },
+  "homepage": "https://github.com/maureenv/cheatss#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
