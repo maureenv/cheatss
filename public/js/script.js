@@ -1,5 +1,6 @@
 // only Front-End JS can manipulate the DOM
 
+/* Adds an active class to nav bar */
 $("a").each(function(i,a){
   var path = ($(a).attr("href"));
   console.log(path);
@@ -8,6 +9,7 @@ $("a").each(function(i,a){
     $(a).addClass("active")
   }
 })
+
 /* animate through each letter */
 $.fn.retype = function(delay) {
     var el = this,
