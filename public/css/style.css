@@ -180,3 +180,8 @@ h3 {
   color: gray;
   font-family: 'Source Sans Pro', sans-serif, arial;
 }
+
+/***************** STYLING FOR CODE ************/
+.quote {
+  color: green;
+}

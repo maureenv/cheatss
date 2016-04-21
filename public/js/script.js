@@ -37,3 +37,5 @@ function syntaxHighlights(){
     codeArray[i].innerHTML = data;
   }
 }
+
+window.addEventListener("load", syntaxHighlights);

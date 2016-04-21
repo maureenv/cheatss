@@ -14,3 +14,8 @@ Tutorial.remove({}).then(function(){
 // 1. $node db/seed.js
 // 2. use cheatss   (do this in mongo)  cheatss is database name from connection.js
 // 3. db.tutorials.find()               make sure your json data shows up when you do this
+
+
+// steps for dropping database
+// use databasename
+// db.runCommand( { dropDatabase: 1 } )
