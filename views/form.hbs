@@ -1,10 +1,22 @@
 <div class="content">
   <div class="sheet">
-    <h3> Create Tutorial </h3>
-    <form action = "/tutorials-show" method = "post">
-      <input type="text" name="tutorial[title]" placeholder = "tutorial title">
-      <textarea name="tutorial[htmlCode]" placeholder = "tutorial title"></textarea>
-      <button type="submit"> Create! </button>
-    </form>
+    <div class="form_container">
+      <h3> Create Tutorial </h3>
+      <form action = "/tutorials-show" method = "post">
+        <p class="label"> Tutorial Title </p>
+        <input type="text" name="tutorial[title]" placeholder = "Insert title">
+        <p class="label"> Embed Demo Link </p>
+        <input type="text" name="tutorial[demoLink]" placeholder = "Embed code from Codepen or JSfiddle">
+        <p class="label"> Description Of Code </p>
+        <textarea class="description" name="tutorial[comment]" placeholder = "Write a description of what your code does"></textarea>
+        <p class="label"> HTML </p>
+        <textarea name="tutorial[htmlCode]" placeholder = "Insert HTML code"></textarea>
+        <p class="label"> CSS </p>
+        <textarea name="tutorial[cssCode]" placeholder = "Insert CSS code"></textarea>
+        <p class="label"> JavaScript </p>
+        <textarea name="tutorial[jsCode]" placeholder = "Insert JavaScript code"></textarea>
+        <button type="submit"> Create! </button>
+      </form>
+    </div>
   </div>
 </div>

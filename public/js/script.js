@@ -27,15 +27,35 @@ $.fn.retype = function(delay) {
 $('.codeAnimate').retype();
 
 /* Syntax highlight for code */
-function syntaxHighlights(){
-  var codeArray = document.getElementsByTagName("pre");
+function htmlHighlights(){
+  var codeArray = document.getElementsByClassName("html");
+  for(var i=0; i<codeArray.length; i++){
+    var data = codeArray[i].innerHTML;
+    data = data.replace(/"(.*?)"/g, '<span id="quote">"$1"</span>');
+    data = data.replace(/'(.*?)'/g, "<span id='quote'>'$1'</span>");
+    data = data.replace(/&lt;(.*?)=/g, '&lt;<span id="codebracket">$1</span>=');
+      // data = data.replace(/&lt;(.*?)&gt;/g, '&lt;<span id="codebracket">$1</span>&gt;');
+    data = data.replace(/class/g, '<span id="no">class</span>');
+
+
+    // data = data.replace(/var/g, '<span class="quote">var</span>');
+    // data = data.replace(/\/\/ (.*?) \n/g, '<span class="comment">//$1</span>');
+    // data = data.replace(/\/\* (.*?) \*\//g, '<span class="comment">/* $1 */</span>');
+    codeArray[i].innerHTML = data;
+  }
+}
+// data = data.replace(/&lt;/g, '<span class="code-elem">&lt;</span>');
+
+function cssHighlights(){
+  var codeArray = document.getElementsByClassName("css");
   for(var i=0; i<codeArray.length; i++){
     var data = codeArray[i].innerHTML;
     data = data.replace(/"(.*?)"/g, '<span class="quote">"$1"</span>');
-    data = data.replace(/&lt;(.*?)&gt;/g, '<span class="code-elem">&lt;$1&gt;</span>');
-    data = data.replace(/\/\//g, '<span class="comment">//</span>');
+    data = data.replace(/'(.*?)'/g, "<span class='quote'>'$1'</span>");
+    data = data.replace(/\/\* (.*?) \*\//g, '<span id="comment">/* $1 */</span>');
     codeArray[i].innerHTML = data;
   }
 }
 
-window.addEventListener("load", syntaxHighlights);
+window.addEventListener("load", htmlHighlights);
+window.addEventListener("load", cssHighlights);

@@ -2,8 +2,16 @@
   margin: 0;
   padding: 0;
   outline: 0;
+       box-sizing: border-box;
 }
-a {
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  appearance: none;
+  border-radius: none;
+}
+.side_link {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -15,7 +23,7 @@ a {
   font-family: 'Source Sans Pro', sans-serif, arial;
 }
 
-a:hover, a:active, .active {
+.side_link:hover, .side_link:active, .active {
   color: white;
   background-color: #ff861c;
   /*-moz-box-shadow:    inset 0 0 10px #631400;
@@ -125,6 +133,29 @@ h2 {
   cursor: default;
 }
 
+/** main page button **/
+.main_button_link{
+  margin-top: 30px;
+  display: block;
+  text-align: center;
+}
+
+.main_button {
+  margin: 0 auto;
+  background-color: #ff861c;
+  font-size: 30px;
+  border-top: 1px solid white;
+  border-bottom: 3px solid rgba(78,0,82,1);
+  text-shadow: 1px 1px #de4900;
+
+}
+
+.main_button:hover {
+  border-top: 1px solid #eda887;
+  background-color: #de4900;
+  border-bottom: 3px solid rgba(78,0,82,1);
+}
+
 /* CSS FOR SAFARI *******************/
 
 _::-webkit-full-page-media, _:future, :root .safari_only {
@@ -165,7 +196,7 @@ _::-webkit-full-page-media, _:future, :root .codeAnimate {
 .sheet {
   margin: 30px auto;
   width: 800px;
-  height: 1000px;
+  padding-bottom: 30px;
   -webkit-box-shadow: 3px 0px 16px 3px rgba(6,26,79,0.52);
   -moz-box-shadow: 3px 0px 16px 3px rgba(6,26,79,0.52);
   box-shadow: 3px 0px 16px 3px rgba(6,26,79,0.52);
@@ -179,9 +210,164 @@ h3 {
   font-size: 65px;
   color: gray;
   font-family: 'Source Sans Pro', sans-serif, arial;
+  margin-bottom: -20px;
 }
 
+.show_sheet_container {
+  padding: 30px;
+}
+
+.tutorial_comment {
+  color: black;
+  font-size: 20px;
+  line-height: 1.4;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  margin-bottom: 20px;
+}
+
+pre {
+  background-color: #1d1f20;
+  width: 100%;
+  margin-bottom: 20px;
+  color: #e2e2e2;
+  padding: 20px;
+  font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+.label_show {
+  color: white;
+  padding: 5px;
+  padding-left: 10px;
+  margin-top: 20px;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  font-size: 23px;
+  font-weight: 400;
+  background: rgba(255,134,28,1);
+  background: -moz-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,134,28,1)), color-stop(100%, rgba(255,255,255,0)));
+  background: -webkit-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+  background: -o-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+  background: -ms-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff861c', endColorstr='#ffffff', GradientType=1 );
+}
 /***************** STYLING FOR CODE ************/
-.quote {
-  color: green;
+#quote {
+  color: rgba(207,31,151,1);
+}
+
+#comment {
+  color: #454545;
+}
+
+#codebracket {
+  color: #bc00e4;
+}
+
+#no {
+  color:#33c9db;
+}
+
+#white {
+  color: #e2e2e2;
+}
+
+/************** STYLING FOR FORM ****************/
+
+.form_container {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+input[type="text"]{
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  font-size: 20px;
+  width: 100%;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  padding: 5px;
+}
+
+.description{
+  width: 100%;
+  font-size: 20px;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  height: 150px;
+}
+
+textarea {
+  padding: 5px;
+  width: 100%;
+  font-size: 16px;
+  height: 150px;
+  font-family: monospace;
+  white-space: pre;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  resize: none;
+}
+
+/* remove blue outline from active text-field in chrome */
+textarea:focus, input:focus{
+    outline: none;
+}
+
+/* remove resizer button from text area */
+::-webkit-resizer{
+  display: none;
+}
+
+/* Change color of placeholder */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #C1C1C1;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #C1C1C1;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #C1C1C1;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #C1C1C1;
+}
+
+.label {
+    color: white;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-family: 'Source Sans Pro', sans-serif, arial;
+    font-size: 23px;
+    font-weight: 400;
+    background: rgba(255,134,28,1);
+    background: -moz-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,134,28,1)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+    background: -ms-linear-gradient(left, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(to right, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff861c', endColorstr='#ffffff', GradientType=1 );
+}
+
+button {
+  background-color: rgba(207,31,151,1);
+  font-size: 23px;
+  color: white;
+  border: none;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  padding: 10px;
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(78,0,82,1);
+  transition: background-color 0.5s ease;
+}
+
+button:hover {
+  border-bottom: 2px solid black;
+  background-color:rgba(78,0,82,1);
+  cursor: pointer;
+
 }

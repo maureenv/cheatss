@@ -8,7 +8,16 @@
 <div class="content">
   <div class="sheet">
     <h3> {{tutorial.title}} </h3>
-    <pre> {{tutorial.htmlCode}}<pre>
+    <div class="show_sheet_container">
+      <p class="tutorial_comment"> {{tutorial.comment}} </p>
+      <!-- <div>{{{tutorial.demoLink}}} </div> -->
+      <p class="label_show"> HTML </p>
+      <pre class="html"> {{tutorial.htmlCode}}</pre>
+      <p class="label_show"> CSS </p>
+      <pre class="css"> {{tutorial.cssCode}}</pre>
+      <p class="label_show"> JavaScript </p>
+      <pre> {{tutorial.jsCode}}</pre>
+    </div>
   </div>
 </div>
 {{/unless}}
