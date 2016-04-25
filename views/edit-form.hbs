@@ -1,0 +1,22 @@
+<div class="content">
+  <div class="sheet">
+    <div class="form_container">
+      <h3> Edit Tutorial </h3>
+      <form action = "/edit-form/{{tutorial.title}}" method = "post">
+        <p class="label"> Tutorial Title </p>
+        <input type="text" name="tutorial[title]" placeholder = "Insert title" value="{{tutorial.title}}"/>
+        <p class="label"> Embed Demo Link </p>
+        <input type="text" name="tutorial[demoLink]" placeholder = "Embed code from Codepen or JSfiddle" value="{{tutorial.demoLink}}">
+        <p class="label"> Description Of Code </p>
+        <textarea class="description" name="tutorial[comment]" placeholder = "Write a description of what your code does">{{tutorial.comment}}</textarea>
+        <p class="label"> HTML </p>
+        <textarea name="tutorial[htmlCode]" placeholder = "Insert HTML code">{{tutorial.htmlCode}}</textarea>
+        <p class="label"> CSS </p>
+        <textarea name="tutorial[cssCode]" placeholder = "Insert CSS code">{{tutorial.cssCode}}</textarea>
+        <p class="label"> JavaScript </p>
+        <textarea name="tutorial[jsCode]" placeholder = "Insert JavaScript code">{{tutorial.jsCode}}</textarea>
+        <button type="submit"> Edit Tutorial </button>
+      </form>
+    </div>
+  </div>
+</div>

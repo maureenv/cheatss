@@ -32,17 +32,28 @@ app.get("/", function(req, res){
 app.get("/form", function(req, res){
   // res.render("welcome", {
   //     tutorials: db.tutorials
-    Tutorial.find().sort({title:1}).then(function(tutorials){
+  Tutorial.find().sort({title:1}).then(function(tutorials){
     res.render("form", {
       tutorials: tutorials // to render tutorials in nav bar
     })
   }) //render this in layout-main body tag
 });
 
-app.get("/:title", function(req, res){
 
+app.get("/edit-form/:title", function(req, res){
   Tutorial.findOne({title: req.params.title}).then(function(tutorial){
-      Tutorial.find().sort({title:1}).then(function(tutorials){ // to render tutorials in nav bar
+    Tutorial.find().sort({title:1}).then(function(tutorials){
+      res.render("edit-form", {
+        tutorial: tutorial,
+        tutorials: tutorials // render all tutorials in nav bar
+      })
+    })
+  });
+});
+
+app.get("/:title", function(req, res){
+  Tutorial.findOne({title: req.params.title}).then(function(tutorial){
+    Tutorial.find().sort({title:1}).then(function(tutorials){ // to render tutorials in nav bar
       res.render("tutorials-show", {
         tutorial: tutorial,
         tutorials: tutorials // to render tutorials in nav bar
@@ -51,21 +62,28 @@ app.get("/:title", function(req, res){
   });
 });
 
+// DELETE post
 app.post("/:title/delete", function(req, res){
   Tutorial.findOneAndRemove({title: req.params.title}).then(function(){
     res.redirect("/")
   });
 });
 
+// Create post
 app.post("/tutorials-show", function(req, res){
   //res.json(req.body); //The server will respond with JSON that contains the user input, which is stored in req.body. res.json(req.body) is the initial test to see if json data is rendered.
   req.body.tutorial.title = req.body.tutorial.title.trim();
   Tutorial.create(req.body.tutorial).then(function(tutorial){
-  res.redirect("/" + tutorial.title);
-  })
+    res.redirect("/" + tutorial.title);
+  });
 });
 
-
+// edit post
+app.post("/edit-form/:title", function(req, res){
+  Tutorial.findOneAndUpdate({title: req.params.title}, req.body.title, {new: true}).then(function(tutorial){
+    res.redirect("/" + tutorial.title );
+  });
+});
 
 app.listen(app.get("port"), function(){
   console.log("I work on localhost:3001");

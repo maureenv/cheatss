@@ -413,7 +413,12 @@ button:hover {
   border-bottom: 2px solid black;
   background-color:rgba(78,0,82,1);
   cursor: pointer;
+}
 
+.delete_button {
+  float: left;
+  margin-top: -51px;
+  margin-left: 160px;
 }
 
 textarea {
