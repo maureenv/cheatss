@@ -19,6 +19,11 @@
       <pre class="css codebox"> {{tutorial.cssCode}}</pre>
       <p class="label_show"> JavaScript </p>
       <pre class="js codebox"> {{tutorial.jsCode}}</pre>
+
+      <!-- delete button -->
+      <form method="post" action="/{{tutorial.title}}/delete">
+        <button type="submit"> Delete Tutorial </button>
+      </form>
   </div>
 </div>
 {{/unless}}

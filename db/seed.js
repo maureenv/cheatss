@@ -10,6 +10,8 @@ Tutorial.remove({}).then(function(){
   });
 });
 
+// check js file at http://jsonlint.com/
+
 // Steps for seeding file
 // 1. $node db/seed.js
 // 2. use cheatss   (do this in mongo)  cheatss is database name from connection.js
