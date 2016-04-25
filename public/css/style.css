@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   outline: 0;
-       box-sizing: border-box;
+  box-sizing: border-box;
+  /*outline: 1px solid red;*/
 }
 
 select {
@@ -13,22 +14,48 @@ select {
 }
 .side_link {
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
   text-align: center;
   color: gray;
   font-family: arial;
   display: block;
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif, arial;
+  line-height: 40px;
+  transition: background-color 0.5s ease;
+  transition: color 0.5s ease;
 }
 
-.side_link:hover, .side_link:active, .active {
+.side_link:hover, .active {
   color: white;
   background-color: #ff861c;
   /*-moz-box-shadow:    inset 0 0 10px #631400;
   -webkit-box-shadow: inset 0 0 10px #631400;
   box-shadow:         inset 0 0 10px #631400;*/
+}
+
+.footer {
+  height: 40px;
+  /*text-align: center;*/
+  color: gray;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  background-color: #1d1f20;
+  display: block;
+  position: relative;
+}
+
+.footer>a{
+  display: block;
+  line-height: 40px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  position: absolute;
+  transition: background-color 0.5s ease;
+}
+
+.footer>a:hover{
+  background-color: rgba(78,0,82,1);
 }
 
 body{
@@ -87,6 +114,7 @@ body{
   -webkit-box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
   -moz-box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
   box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
+  overflow-y: scroll;
 }
 
 .heading {
@@ -208,9 +236,8 @@ h3 {
   padding-top: 20px;
   text-align: center;
   font-size: 65px;
-  color: gray;
+  color: #1d1f20;
   font-family: 'Source Sans Pro', sans-serif, arial;
-  margin-bottom: -20px;
 }
 
 .show_sheet_container {
@@ -223,16 +250,17 @@ h3 {
   line-height: 1.4;
   font-family: 'Source Sans Pro', sans-serif, arial;
   margin-bottom: 20px;
+  margin-top: -20px;
 }
 
-pre {
+.codebox {
   background-color: #1d1f20;
   width: 100%;
   margin-bottom: 20px;
   color: #e2e2e2;
   padding: 20px;
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
-  white-space: pre-wrap;
+  overflow-x: scroll;
   line-height: 1.4;
 }
 
@@ -253,6 +281,22 @@ pre {
   background: linear-gradient(to right, rgba(255,134,28,1) 0%, rgba(255,255,255,0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff861c', endColorstr='#ffffff', GradientType=1 );
 }
+
+.codepen_cover {
+  width: 100%;
+  height: 50px;
+  background-color: #fafaf2;
+  background-image: url('http://api.thumbr.it/whitenoise-361x370.png?background=fafaf2ff&noise=c9b49e&density=40&opacity=14');
+  margin-bottom: -50px;
+  z-index: 100;
+  position: relative;
+}
+
+.live_demo {
+  margin-bottom: -50px;
+  z-index: 1000;
+  position: relative;
+}
 /***************** STYLING FOR CODE ************/
 #quote {
   color: rgba(207,31,151,1);
@@ -266,7 +310,7 @@ pre {
   color: #bc00e4;
 }
 
-#no {
+#class {
   color:#33c9db;
 }
 
@@ -370,4 +414,8 @@ button:hover {
   background-color:rgba(78,0,82,1);
   cursor: pointer;
 
+}
+
+textarea {
+  white-space: pre-wrap;
 }

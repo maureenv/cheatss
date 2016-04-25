@@ -9,7 +9,7 @@ app.use("/public", express.static("public")) // the "/public" part can say anyth
 app.use(parser.urlencoded({extended: true})); //makes body parser support html forms
 
 app.set("view engine", "hbs"); //every express app needs a view engine
-app.set("port", process.env.PORT || 3001); // needed for HEROKU
+app.set("port", process.env.PORT || 3001); // needed for HEROKU PORT || 3001
 app.engine(".hbs", hbs({
   extname: ".hbs", // find files that end in .hbs in views/ folder
   partialsDir: "views/",
@@ -17,20 +17,29 @@ app.engine(".hbs", hbs({
   defaultLayout: "layout-main"
 }))
 
+// app.get("/", function(req, res){
+//   Tutorial.find({}).then(function(tutorials){
+//     res.render("welcome", {
+//       tutorials: tutorials // to render tutorials in nav bar
+//     })
+//   }) //render this in layout-main body tag
+// });
+// everysingle app.get needs a res.something or else the page will continuosly search for a response.
+
 app.get("/", function(req, res){
-  // res.render("welcome", {
-  //     tutorials: db.tutorials
-  Tutorial.find({}).then(function(tutorials){
+  Tutorial.find().sort({title:1}).then(function(tutorials){
     res.render("welcome", {
       tutorials: tutorials // to render tutorials in nav bar
     })
   }) //render this in layout-main body tag
 });
-// everysingle app.get needs a res.something or else the page will continuosly search for a response.
+
+
+
 app.get("/form", function(req, res){
   // res.render("welcome", {
   //     tutorials: db.tutorials
-  Tutorial.find({}).then(function(tutorials){
+    Tutorial.find().sort({title:1}).then(function(tutorials){
     res.render("form", {
       tutorials: tutorials // to render tutorials in nav bar
     })
@@ -52,7 +61,7 @@ app.get("/:title", function(req, res){
   // });
 
   Tutorial.findOne({title: req.params.title}).then(function(tutorial){
-    Tutorial.find({}).then(function(tutorials){ // to render tutorials in nav bar
+      Tutorial.find().sort({title:1}).then(function(tutorials){ // to render tutorials in nav bar
       res.render("tutorials-show", {
         tutorial: tutorial,
         tutorials: tutorials // to render tutorials in nav bar
