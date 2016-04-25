@@ -21,6 +21,9 @@ app.engine(".hbs", hbs({
 
 app.get("/", function(req, res){
   Tutorial.find().sort({title:1}).then(function(tutorials){
+    // if(err){
+    //   console.log("welcome page error ", err, tutorials);
+    // }
     res.render("welcome", {
       tutorials: tutorials // to render tutorials in nav bar
     })
@@ -80,8 +83,13 @@ app.post("/tutorials-show", function(req, res){
 
 // edit post
 app.post("/edit-form/:title", function(req, res){
-  Tutorial.findOneAndUpdate({title: req.params.title}, req.body.title, {new: true}).then(function(tutorial){
+  console.log("update", req.body);
+  Tutorial.findOneAndUpdate({title: req.params.title}, req.body.tutorial, {new: true}).then(function(tutorial){ //req.body.tutorial is the object of all my tutorial attributes
+    // if (err){
+    //   console.log("error updating", err, tutorial)
+    // }
     res.redirect("/" + tutorial.title );
+
   });
 });
 
