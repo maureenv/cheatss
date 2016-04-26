@@ -2,7 +2,14 @@
   <div class="sheet">
     <div class="form_container">
       <h3> Create Tutorial </h3>
-      <form action = "/tutorials-show" method = "post">
+      <form action = "/form" method = "post">
+         {{#if errors}}
+
+            {{#each errors}}
+              <p class="error_message">{{this.msg}}</p>
+            {{/each}}
+
+         {{/if}}
         <p class="label"> Tutorial Title </p>
         <input type="text" name="tutorial[title]" placeholder = "Insert title">
         <p class="label"> Embed Demo Link </p>
