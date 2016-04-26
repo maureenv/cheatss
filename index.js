@@ -6,7 +6,7 @@ var app     = express();
 var mongoose =require("./db/connection"); //connection to database
 var Tutorial = mongoose.model("Tutorial");
 // validation tutorial https://booker.codes/input-validation-in-express-with-express-validator/
-
+// pushing to heroku
 
 
 app.use("/public", express.static("public")) // the "/public" part can say anything its what shows up in URL, but "public" must say public.
