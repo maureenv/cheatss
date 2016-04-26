@@ -4,6 +4,7 @@ var hbs     = require("express-handlebars");
 var app     = express();
 var mongoose =require("./db/connection"); //connection to database
 var Tutorial = mongoose.model("Tutorial");
+// testing git branch
 
 app.use("/public", express.static("public")) // the "/public" part can say anything its what shows up in URL, but "public" must say public.
 app.use(parser.urlencoded({extended: true})); //makes body parser support html forms
@@ -93,7 +94,7 @@ app.post("/edit-form/:title", function(req, res){
   });
 });
 
- 
+
 app.listen(app.get("port"), function(){
   console.log("I work on localhost:3001");
 });
