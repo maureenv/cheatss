@@ -20,7 +20,7 @@ if(process.env.NODE_ENV == "production"){
   mongoose.connect(process.env.MONGOLAB_URI);
 }else{
   mongoose.connect("mongodb://localhost/cheatss");
-}
+} //heroku attempt
 
 module.exports = mongoose;
 // in order to connect to Mongo need to do $mongo and $mongod in different tabs
