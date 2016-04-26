@@ -1,1 +1,4 @@
-[]
+[
+  {"param": "title", "msg": "A title must be entered", "value": ""},
+  {"param": "comment", "msg": "A description must be entered", "value": ""}
+]
