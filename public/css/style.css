@@ -424,3 +424,10 @@ button:hover {
 textarea {
   white-space: pre-wrap;
 }
+
+.error_message {
+  font-size: 20px;
+  color: red;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  line-height: 1.4;
+}
