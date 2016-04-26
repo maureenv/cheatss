@@ -14,8 +14,14 @@ var TutorialSchema = new mongoose.Schema(
 );
 
 mongoose.model("Tutorial", TutorialSchema); //"Tutorial" is name of model and TutorialSchema is name of desired Schema
-// mongoose.connect("mongodb://localhost/cheatss") //cheatss is database name
-mongoose.connect("mongodb://127.0.0.1:27017/cheatss")
+//mongoose.connect("mongodb://localhost/cheatss") //cheatss is database name
+
+if(process.env.NODE_ENV == "production"){
+  mongoose.connect(process.env.MONGOLAB_URI);
+}else{
+  mongoose.connect("mongodb://localhost/cheatss");
+}
+
 module.exports = mongoose;
 // in order to connect to Mongo need to do $mongo and $mongod in different tabs
 
