@@ -431,3 +431,8 @@ textarea {
   font-family: 'Source Sans Pro', sans-serif, arial;
   line-height: 1.4;
 }
+
+video {
+  width: 100%;
+  margin-top: 20px;
+}
