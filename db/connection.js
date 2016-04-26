@@ -17,7 +17,7 @@ mongoose.model("Tutorial", TutorialSchema); //"Tutorial" is name of model and Tu
 //mongoose.connect("mongodb://localhost/cheatss") //cheatss is database name
 
 if(process.env.NODE_ENV == "production"){
-  mongoose.connect(process.env.MONGODB_URI);
+  mongoose.connect(process.env.MONGODB_URI); // make sure this says MONGODB NOT MONGOLAB
 }else{
   mongoose.connect("mongodb://localhost/cheatss");
 } //heroku attempt
