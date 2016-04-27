@@ -118,10 +118,17 @@ app.get("/:title", function(req, res){
   console.log("body", req.body)
   Tutorial.findOne({title: req.params.title}).populate('owner').then(function(tutorial){
     Tutorial.find().sort({title:1}).then(function(tutorials){ // to render tutorials in nav bar
+      var user = req.user;
+      var currentUserIsOwner = false;
+      if (user){
+        currentUserIsOwner = (user.username == tutorial.owner.username)
+      }
+
       res.render("tutorials-show", {
         tutorial: tutorial,
         tutorials: tutorials, // to render tutorials in nav bar
-        user : req.user
+        user : user,
+        currentUserIsOwner: currentUserIsOwner
       })
     })
   });
