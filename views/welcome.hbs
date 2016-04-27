@@ -4,5 +4,13 @@
         <h1>C<span class="cheat">heat</span>SS</h1>
         <h2> Share your cheats </h2>
         <a href="/form" class="main_button_link"><button class="main_button"> Create Tutorial </button></a>
+
+        {{#if user}}
+        <p> You are currently logged in as {{user.username}}</p>
+        <a href="/logout"> Logout </a>
+        {{else}}
+        <a href="/register"> Sign Up! </a>
+        <a href="/login"> Login </a>
+        {{/if}}
       </div>
     </div>

@@ -7,6 +7,7 @@ var mongoose =require("./db/connection"); //connection to database
 var Tutorial = mongoose.model("Tutorial");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
+var session = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -20,20 +21,26 @@ app.use(parser.json());
 app.use(parser.urlencoded({extended: true})); //makes body parser support html forms
 app.use(validator());
 app.use(cookieParser());
-app.use(require('express-session')({
+// app.use(require('express-session')({
+//   secret: "thuglifecats",
+//   resave: false,
+//   saveUninitialized: false
+// }));
+app.use(session({
   secret: "thuglifecats",
   resave: false,
   saveUninitialized: false
-}));
+}))
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 // passport config
-var Account = require('./db/connection');
+var mongoose = require('./db/connection');
+Account = mongoose.model("Account");
 passport.use(new LocalStrategy(Account.authenticate()));
-// passport.serializeUser(Account.serializeUser());
-// passport.deserializeUser(Account.deserializeUser());
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 
 app.set("view engine", "hbs"); //every express app needs a view engine
@@ -53,14 +60,21 @@ app.get("/", function(req, res){
     //   console.log("welcome page error ", err, tutorials);
     // }
     res.render("welcome", {
-      tutorials: tutorials // to render tutorials in nav bar
+      tutorials: tutorials, // to render tutorials in nav bar
+      user : req.user
     })
+  })
+  .catch(function(error){
+    console.log(error);
+    res.send(error);
   }) //render this in layout-main body tag
 });
 
 
 
 app.get("/form", function(req, res){
+  console.log("params", req.params)
+  console.log("body", req.body)
   // res.render("welcome", {
   //     tutorials: db.tutorials
   Tutorial.find().sort({title:1}).then(function(tutorials){
@@ -70,24 +84,44 @@ app.get("/form", function(req, res){
   }) //render this in layout-main body tag
 });
 
+app.get('/register', function(req, res) {
+  Tutorial.find().sort({title:1}).then(function(tutorials){
+    res.render("register", {
+      tutorials: tutorials // to render tutorials in nav bar
+    })
+  }) //
+});
+
+app.get('/login', function(req, res) {
+    res.render('login', { user : req.user });
+});
+
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
 
 app.get("/edit-form/:title", function(req, res){
   Tutorial.findOne({title: req.params.title}).then(function(tutorial){
     Tutorial.find().sort({title:1}).then(function(tutorials){
       res.render("edit-form", {
         tutorial: tutorial,
-        tutorials: tutorials // render all tutorials in nav bar
+        tutorials: tutorials// render all tutorials in nav bar
       })
     })
   });
 });
 
 app.get("/:title", function(req, res){
-  Tutorial.findOne({title: req.params.title}).then(function(tutorial){
+  console.log("params", req.params)
+  console.log("body", req.body)
+  Tutorial.findOne({title: req.params.title}).populate('owner').then(function(tutorial){
     Tutorial.find().sort({title:1}).then(function(tutorials){ // to render tutorials in nav bar
       res.render("tutorials-show", {
         tutorial: tutorial,
-        tutorials: tutorials // to render tutorials in nav bar
+        tutorials: tutorials, // to render tutorials in nav bar
+        user : req.user
       })
     })
   });
@@ -103,6 +137,8 @@ app.post("/:title/delete", function(req, res){
 // Create post
 app.post("/form", function(req, res){
   //res.json(req.body); //The server will respond with JSON that contains the user input, which is stored in req.body. res.json(req.body) is the initial test to see if json data is rendered.
+  console.log("params", req.params)
+  console.log("body", req.body)
 
   //////// code for form validator
   //req.validationErrors(true) // for mapping errors
@@ -118,8 +154,12 @@ app.post("/form", function(req, res){
     return;
     /////// end code for form validator
   } else {
-    req.body.tutorial.title = req.body.tutorial.title.trim();
-    Tutorial.create(req.body.tutorial).then(function(tutorial){
+
+    tutorial = req.body.tutorial;
+    tutorial.title = tutorial.title.trim();
+    tutorial.owner = req.user._id;
+
+    Tutorial.create(tutorial).then(function(tutorial){
       res.redirect("/" + tutorial.title);
 
     });
@@ -146,6 +186,23 @@ app.post("/edit-form/:title", function(req, res){
   //} // remove this if I'm not validating code
 });
 
+/////////////////////// Routes for USERS
+app.post('/register', function(req, res) {
+    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+        if (err) {
+            return res.render('register', { account : account });
+        }
+
+        passport.authenticate('local')(req, res, function () {
+            res.redirect('/');
+        });
+    });
+});
+
+
+app.post('/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/');
+});
 
 app.listen(app.get("port"), function(){
   console.log("I work on localhost:3001");

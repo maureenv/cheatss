@@ -10,13 +10,21 @@ var TutorialSchema = new mongoose.Schema(
     demoLink: String,
     htmlCode: String,
     cssCode: String,
-    jsCode: String
+    jsCode: String,
+    owner: {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: 'Account'
+       },
   }
 );
 
 var Account = new mongoose.Schema({
     username: String,
     password: String
+    // tutorials: [{
+    //        type: Schema.Types.ObjectId,
+    //        ref: 'Tutorial'
+    //    }]
 });
 
 Account.plugin(passportLocalMongoose);

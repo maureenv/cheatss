@@ -8,6 +8,7 @@
 <div class="content">
   <div class="sheet">
     <h3> {{tutorial.title}} </h3>
+    {{tutorial.owner.username}}
     <div class="show_sheet_container">
       <p class="tutorial_comment"> {{tutorial.comment}} </p>
       {{#if tutorial.demoLink}}
@@ -24,9 +25,11 @@
       <pre class="js codebox"> {{tutorial.jsCode}}</pre>
       {{/if}}
       <!-- delete and edit button -->
+      {{#if user === tutorial.owner}}
       <a href="/edit-form/{{tutorial.title}}"><button> Edit Tutorial </button></a>
       <form method="post" action="/{{tutorial.title}}/delete">
         <button type="submit" class="delete_button"> Delete Tutorial </button>
+      {{/if}}
       </form>
   </div>
 </div>
