@@ -4,33 +4,32 @@ var mongoose = require("./connection"); //sets connection to database
 var Account = mongoose.model("Account");
 var Tutorial = mongoose.model("Tutorial");
 
-Account.remove({}).then(function(){
-
-  admin = new Account({username: "Admin", password: "password"})
-  admin.save().then( function(newUser){
-    console.log("saved admin:", newUser)
-    addTutorials(newUser)
-    // process.exit(); // create a collection using the JSON contained in seed file
-
-  }).catch(err, function(){
-    console.log("save acct err:", err)
+Tutorial.remove({}).then(function(){
+  Tutorial.collection.insert(seedData).then(function(){
+    process.exit(); // create a collection using the JSON contained in seed file
   });
 });
 
-function addTutorials(owner){
-  // .remove clears entire database
-  Tutorial.remove({}).then(function(){
-    Tutorial.collection.insert([
-      { title: "title1", comment: "comment1", owner: owner._id},
-      { title: "title2", comment: "comment1", owner: owner._id},
-    ]).then(function(){
-      process.exit(); // create a collection using the JSON contained in seed file
-    }).catch(function(err){
-      console.log("tut err:", err)
-      process.exit(); // create a collection using the JSON contained
-    });
+Account.remove({}).then(function(){
+  Acount.collection.insert(seedData).then(function(){
+    process.exit();
   });
-}
+});
+
+// function addTutorials(owner){
+//   // .remove clears entire database
+//   Tutorial.remove({}).then(function(){
+//     Tutorial.collection.insert([
+//       { title: "title1", comment: "comment1", owner: owner._id},
+//       { title: "title2", comment: "comment1", owner: owner._id},
+//     ]).then(function(){
+//       process.exit(); // create a collection using the JSON contained in seed file
+//     }).catch(function(err){
+//       console.log("tut err:", err)
+//       process.exit(); // create a collection using the JSON contained
+//     });
+//   });
+// }
 
 // check js file at http://jsonlint.com/
 
