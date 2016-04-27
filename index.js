@@ -8,7 +8,8 @@ var Tutorial = mongoose.model("Tutorial");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+
 // validation tutorial https://booker.codes/input-validation-in-express-with-express-validator/
 // pushing to heroku
 
@@ -31,8 +32,8 @@ app.use(passport.session());
 // passport config
 var Account = require('./db/connection');
 passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+// passport.serializeUser(Account.serializeUser());
+// passport.deserializeUser(Account.deserializeUser());
 
 
 app.set("view engine", "hbs"); //every express app needs a view engine
