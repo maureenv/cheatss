@@ -5,13 +5,35 @@ var hbs     = require("express-handlebars");
 var app     = express();
 var mongoose =require("./db/connection"); //connection to database
 var Tutorial = mongoose.model("Tutorial");
+var logger = require("morgan");
+var cookieParser = require("cookie-parser");
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
 // validation tutorial https://booker.codes/input-validation-in-express-with-express-validator/
 // pushing to heroku
 
 
 app.use("/public", express.static("public")) // the "/public" part can say anything its what shows up in URL, but "public" must say public.
+app.use(logger('dev'));
+app.use(parser.json());
 app.use(parser.urlencoded({extended: true})); //makes body parser support html forms
 app.use(validator());
+app.use(cookieParser());
+app.use(require('express-session')({
+  secret: "thuglifecats",
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport config
+var Account = require('./db/connection');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
 
 app.set("view engine", "hbs"); //every express app needs a view engine
 app.set("port", process.env.PORT || 3001); // needed for HEROKU PORT || 3001

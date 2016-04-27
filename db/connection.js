@@ -1,6 +1,7 @@
 // used to connect to Mongo
 // connection.js should only serve as a connection between app and database. Should NOT contain seed data
 var mongoose = require("mongoose");
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var TutorialSchema = new mongoose.Schema(
   {
@@ -13,6 +14,14 @@ var TutorialSchema = new mongoose.Schema(
   }
 );
 
+var Account = new mongoose.Schema({
+    username: String,
+    password: String
+});
+
+Account.plugin(passportLocalMongoose);
+
+mongoose.model('Account', Account);
 mongoose.model("Tutorial", TutorialSchema); //"Tutorial" is name of model and TutorialSchema is name of desired Schema
 //mongoose.connect("mongodb://localhost/cheatss") //cheatss is database name
 
