@@ -93,7 +93,12 @@ app.get('/register', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-    res.render('login', { user : req.user });
+  Tutorial.find().sort({title:1}).then(function(tutorials){
+    res.render('login', {
+        user : req.user,
+        tutorials: tutorials
+     });
+  })
 });
 
 app.get('/logout', function(req, res) {
@@ -196,19 +201,41 @@ app.post("/edit-form/:title", function(req, res){
 /////////////////////// Routes for USERS
 app.post('/register', function(req, res) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+      req.checkBody("username", "A username must be entered.").notEmpty();
+      req.checkBody("password", "A password must be entered.").notEmpty();
+      var errors = req.validationErrors();
+      if (errors) {
+        Tutorial.find().sort({title:1}).then(function(tutorials){
+          res.render('register', {errors: errors, tutorials: tutorials}) // this will render tutorials in nav bar and any errors that may occur
+        })
+        return;
+        /////// end code for form validator
+      } else {
         if (err) {
             return res.render('register', { account : account });
         }
-
+        req.body.username = req.body.username.trim();
         passport.authenticate('local')(req, res, function () {
             res.redirect('/');
         });
+      }
     });
 });
 
 
 app.post('/login', passport.authenticate('local'), function(req, res) {
+  req.checkBody("username", "A username must be entered.").notEmpty();
+  req.checkBody("password", "A password must be entered.").notEmpty();
+  var errors = req.validationErrors();
+  if (errors) {
+    Tutorial.find().sort({title:1}).then(function(tutorials){
+      res.render('login', {errors: errors, tutorials: tutorials}) // this will render tutorials in nav bar and any errors that may occur
+    })
+    return;
+    /////// end code for form validator
+  } else {
     res.redirect('/');
+  }
 });
 
 app.listen(app.get("port"), function(){

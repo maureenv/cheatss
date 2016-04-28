@@ -27,6 +27,8 @@ var Account = new mongoose.Schema({
     //    }]
 });
 
+// to search accounts in database do db.accounts.find()
+
 Account.plugin(passportLocalMongoose);
 
 mongoose.model('Account', Account);

@@ -39,24 +39,45 @@ select {
   color: gray;
   font-family: 'Source Sans Pro', sans-serif, arial;
   background-color: #1d1f20;
-  display: block;
   position: relative;
 }
 
-.footer>a{
-  display: block;
+/*.footer>a{
   line-height: 40px;
   width: 100%;
   color: white;
-  text-align: center;
   text-decoration: none;
   position: absolute;
   transition: background-color 0.5s ease;
+}*/
+
+a.home_link, a.login_link {
+  line-height: 40px;
+  width: 115px;
+  display: block;
+  text-align: center;
+  /*border: 1px solid red;*/
+  float: left;
+  color: white;
+  text-decoration: none;
 }
 
-.footer>a:hover{
-  background-color: rgba(78,0,82,1);
+a.home_link {
+  padding-left: 20px;
 }
+
+a.login_link {
+  padding-right: 20px;
+}
+
+.line {
+  color: white;
+  line-height: 40px;
+  float: left;
+  position: absolute;
+}
+
+
 
 body{
   background: rgba(78,0,82,1);
@@ -463,4 +484,8 @@ video {
 
 .signin_link:hover {
   color: #de4900;
+}
+
+.signup {
+  margin-top: 20px;
 }
