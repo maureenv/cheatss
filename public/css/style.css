@@ -253,6 +253,17 @@ h3 {
   margin-top: -20px;
 }
 
+.posted_by {
+  color: rgba(207,31,151,1);
+  font-size: 30px;
+  line-height: 1.4;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  margin-bottom: 20px;
+  margin-top: -40px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
 .codebox {
   background-color: #1d1f20;
   width: 100%;
@@ -435,4 +446,21 @@ textarea {
 video {
   width: 100%;
   margin-top: 20px;
+}
+
+.signin_text {
+  font-size: 30px;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif, arial;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.signin_link {
+  text-decoration: none;
+  color: #ff861c;
+}
+
+.signin_link:hover {
+  color: #de4900;
 }

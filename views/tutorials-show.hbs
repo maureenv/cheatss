@@ -8,8 +8,8 @@
 <div class="content">
   <div class="sheet">
     <h3> {{tutorial.title}} </h3>
-      Posted By: {{tutorial.owner.username}}
     <div class="show_sheet_container">
+      <p class="posted_by">Posted By: {{tutorial.owner.username}}</p>
       <p class="tutorial_comment"> {{tutorial.comment}} </p>
       {{#if tutorial.demoLink}}
       <p class="label_show live_demo"> Live Demo </p>

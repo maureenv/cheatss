@@ -2,15 +2,17 @@
   {{>_csscode}}
       <div class="heading">
         <h1>C<span class="cheat">heat</span>SS</h1>
-        <h2> Share your cheats </h2>
-        <a href="/form" class="main_button_link"><button class="main_button"> Create Tutorial </button></a>
+        <h2> Save a developer with CSS</h2>
 
         {{#if user}}
-        <p> You are currently logged in as {{user.username}}</p>
-        <a href="/logout"> Logout </a>
+        <p class="signin_text"> Welcome {{user.username}} !   <a href ="/logout" class="signin_link"> Logout </a></p>
+
+
+        <a href="/form" class="main_button_link">
+        <button class="main_button"> Create Tutorial </button></a>
+
         {{else}}
-        <a href="/register"> Sign Up! </a>
-        <a href="/login"> Login </a>
+        <p class="signin_text"> <a href="/register" class="signin_link"> Sign up </a> or <a href="/login" class="signin_link"> login </a> to create a tutorial. </p>
         {{/if}}
       </div>
     </div>
