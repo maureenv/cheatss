@@ -108,18 +108,18 @@ app.get('/logout', function(req, res) {
 
 
 app.get("/edit-form/:title", function(req, res){
-  Tutorial.findOne({title: req.params.title}).populate('owner').then(function(tutorial){
+  Tutorial.findOne({title: req.params.title}).then(function(tutorial){
     Tutorial.find().sort({title:1}).then(function(tutorials){
-      var user = req.user;
-      var currentUserIsOwner = false;
-      if (user){
-        currentUserIsOwner = (user.username == tutorial.owner.username)
-      }
+      // var user = req.user;
+      // var currentUserIsOwner = false;
+      // if (user){
+      //   currentUserIsOwner = (user.username == tutorial.owner.username)
+      // }
       res.render("edit-form", {
         tutorial: tutorial,
-        tutorials: tutorials,// render all tutorials in nav bar
-        user : user,
-        currentUserIsOwner: currentUserIsOwner
+        tutorials: tutorials// render all tutorials in nav bar
+        // user : user,
+        // currentUserIsOwner: currentUserIsOwner
       })
     })
   });
