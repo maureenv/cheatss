@@ -231,11 +231,12 @@ _::-webkit-full-page-media, _:future, :root .safari_only {
 }
 
 _::-webkit-full-page-media, _:future, :root .heading {
-  margin-top: 15%;
+  padding-top: 25vh;
+  margin: auto;
 }
 
 _::-webkit-full-page-media, _:future, :root .codeAnimate {
-  margin-left: -100px;
+  margin-left: 200px;
 }
 
 /* CSS for firefox ******************/
