@@ -13,13 +13,28 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // validation tutorial https://booker.codes/input-validation-in-express-with-express-validator/
 // pushing to heroku
+//asynchronous validation https://github.com/ctavan/express-validator
 
 
 app.use("/public", express.static("public")) // the "/public" part can say anything its what shows up in URL, but "public" must say public.
+app.use(errorHandler);
 app.use(logger('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true})); //makes body parser support html forms
-app.use(validator());
+app.use(validator({
+    customValidators: {
+        isUsernameAvailable: function(username) {
+            return new Promise(function(resolve, reject) {
+                Account.findOne({'username': username}, function(err, results) {
+                    if(err) {
+                        return resolve(err);
+                    }
+                    reject(results);
+                });
+            });
+        }
+    }
+}));
 app.use(cookieParser());
 // app.use(require('express-session')({
 //   secret: "thuglifecats",
@@ -206,10 +221,11 @@ app.post("/edit-form/:title", function(req, res){
 });
 
 /////////////////////// Routes for USERS
-app.post('/register', function(req, res) {
+app.post('/register', function(req, res, next) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
       req.checkBody("username", "A username must be entered.").notEmpty();
       req.checkBody("password", "A password must be entered.").notEmpty();
+      // req.check('username', 'This username is already taken').isUsernameAvailable();
       var errors = req.validationErrors();
       if (errors) {
         Tutorial.find().sort({title:1}).then(function(tutorials){
@@ -217,33 +233,42 @@ app.post('/register', function(req, res) {
         })
         return;
         /////// end code for form validator
-      } else {
-        if (err) {
-            return res.render('register', { account : account });
-        }
-        req.body.username = req.body.username.trim();
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
-        });
       }
+      // req.asyncValidationErrors().catch(function(errors) {
+      //   if(errors) {
+      //       res.render('register', {
+      //           success:false,
+      //           errors: errors
+      //       });
+      //   };
+      // });
+      // next();
+
+      if (err) {
+          return res.render('register', { account : account });
+      }
+      req.body.username = req.body.username.trim();
+      passport.authenticate('local')(req, res, function () {
+          res.redirect('/');
+      });
     });
 });
 
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
-  req.checkBody("username", "A username must be entered.").notEmpty();
-  req.checkBody("password", "A password must be entered.").notEmpty();
-  var errors = req.validationErrors();
-  if (errors) {
-    Tutorial.find().sort({title:1}).then(function(tutorials){
-      res.render('login', {errors: errors, tutorials: tutorials}) // this will render tutorials in nav bar and any errors that may occur
-    })
-    return;
+app.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), function(req, res) {
+  Tutorial.find().sort({title:1}).then(function(tutorials){
+    res.render('login', {tutorials: tutorials}) // this will render tutorials in nav bar and any errors that may occur
     /////// end code for form validator
-  } else {
     res.redirect('/');
-  }
+  })
 });
+
+function errorHandler(err, req, res, next) {
+  var code = err.code;
+  var message = err.message;
+  res.writeHead(code, message, {'content-type' : 'text/plain'});
+  res.end(message);
+}
 
 app.listen(app.get("port"), function(){
   console.log("I work on localhost:3001");
