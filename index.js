@@ -237,7 +237,8 @@ app.post('/register', function(req, res, next) {
       if (err) {
           return res.render('register', { account : account });
       }
-      req.body.username = req.body.username.trim();
+      req.body.username = req.body.username.replace(/\s/g, "");
+      req.body.password = req.body.password.replace(/\s/g, "");
       passport.authenticate('local')(req, res, function () {
           res.redirect('/');
       });
