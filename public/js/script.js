@@ -81,9 +81,7 @@ function codepen(){
   }
 }
 
-var el = document.getElementsByClassName("whitespace");
-var val = el.value.replace(/\s/g, "");
-alert(val);
+
 
 window.addEventListener("load", codepen);
 window.addEventListener("load", htmlHighlights);

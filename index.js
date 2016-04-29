@@ -21,20 +21,7 @@ app.use(errorHandler);
 app.use(logger('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true})); //makes body parser support html forms
-app.use(validator({
-    customValidators: {
-        isUsernameAvailable: function(username) {
-            return new Promise(function(resolve, reject) {
-                Account.findOne({'username': username}, function(err, results) {
-                    if(err) {
-                        return resolve(err);
-                    }
-                    reject(results);
-                });
-            });
-        }
-    }
-}));
+app.use(validator());
 app.use(cookieParser());
 // app.use(require('express-session')({
 //   secret: "thuglifecats",
@@ -223,8 +210,6 @@ app.post("/edit-form/:title", function(req, res){
 /////////////////////// Routes for USERS
 app.post('/register', function(req, res, next) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-      req.body.username = req.body.username.replace(/\s/g, ""); // prevent spaces
-      req.body.password = req.body.password.replace(/\s/g, ""); //prevent spaces
       req.checkBody("username", "A username must be entered.").notEmpty();
       req.checkBody("password", "A password must be entered.").notEmpty();
       // req.check('username', 'This username is already taken').isUsernameAvailable();
