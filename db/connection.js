@@ -29,6 +29,7 @@ var Account = new mongoose.Schema({
 
 // to search accounts in database do db.accounts.find()
 
+
 Account.plugin(passportLocalMongoose);
 
 mongoose.model('Account', Account);
@@ -40,6 +41,7 @@ if(process.env.NODE_ENV == "production"){
 }else{
   mongoose.connect("mongodb://localhost/cheatss");
 } //heroku attempt
+
 
 module.exports = mongoose;
 // in order to connect to Mongo need to do $mongo and $mongod in different tabs

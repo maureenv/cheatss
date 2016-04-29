@@ -223,6 +223,8 @@ app.post("/edit-form/:title", function(req, res){
 /////////////////////// Routes for USERS
 app.post('/register', function(req, res, next) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+      req.body.username = req.body.username.replace(/\s/g, ""); // prevent spaces
+      req.body.password = req.body.password.replace(/\s/g, ""); //prevent spaces
       req.checkBody("username", "A username must be entered.").notEmpty();
       req.checkBody("password", "A password must be entered.").notEmpty();
       // req.check('username', 'This username is already taken').isUsernameAvailable();
@@ -237,8 +239,6 @@ app.post('/register', function(req, res, next) {
       if (err) {
           return res.render('register', { account : account });
       }
-      req.body.username = req.body.username.replace(/\s/g, "");
-      req.body.password = req.body.password.replace(/\s/g, "");
       passport.authenticate('local')(req, res, function () {
           res.redirect('/');
       });
