@@ -234,16 +234,6 @@ app.post('/register', function(req, res, next) {
         return;
         /////// end code for form validator
       }
-      // req.asyncValidationErrors().catch(function(errors) {
-      //   if(errors) {
-      //       res.render('register', {
-      //           success:false,
-      //           errors: errors
-      //       });
-      //   };
-      // });
-      // next();
-
       if (err) {
           return res.render('register', { account : account });
       }
