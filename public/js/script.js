@@ -10,6 +10,13 @@
 //   }
 // })
 
+// remove white space from form
+function removeSpaces(string) {
+return string.split(' ').join('');
+console.log(string);
+}
+
+// links in navbar
 $(".side_link").each(function(i,a){
   var path = ($(a).attr("href"));
   console.log(path);
