@@ -11,7 +11,7 @@
       {{/if}}
       <form action = "/login" method = "post">
         <p class="label"> Username </p>
-        <input type="text" name="username" placeholder = "Username">
+        <input type="text" name="username" onblur="this.value=removeSpaces(this.value);" placeholder = "Username">
         <p class="label"> Password </p>
         <input type="password" name="password" placeholder = "Password">
         <button type="submit" class="signup"> Login </button>

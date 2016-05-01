@@ -10,6 +10,12 @@
 //   }
 // })
 
+/// remove whitespace from form fields
+function removeSpaces(string) {
+return string.split(' ').join('');
+console.log(string);
+}
+
 $(".side_link").each(function(i,a){
   var path = ($(a).attr("href"));
   console.log(path);
