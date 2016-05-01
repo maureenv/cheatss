@@ -195,6 +195,12 @@ h2 {
   text-align: center;
 }
 
+.delete_button {
+  float: left;
+  margin-top: -51px;
+  margin-left: 160px;
+}
+
 .main_button {
   margin: 0 auto;
   background-color: #ff861c;
@@ -244,6 +250,10 @@ _::-webkit-full-page-media, _:future, :root .codeAnimate {
   .codeAnimate {
     margin-top: -300px;
     margin-left: -100px;
+  }
+
+  .delete_button {
+    margin-top: -54px;
   }
 }
 
@@ -465,11 +475,6 @@ button:hover {
   cursor: pointer;
 }
 
-.delete_button {
-  float: left;
-  margin-top: -51px;
-  margin-left: 160px;
-}
 
 textarea {
   white-space: pre-wrap;

@@ -29,7 +29,7 @@
 
       {{#if currentUserIsOwner}}
 
-      <a href="/edit-form/{{tutorial.title}}"><button> Edit Tutorial </button></a>
+      <a href="/edit-form/{{tutorial.title}}"><button class="edit_button"> Edit Tutorial </button></a>
       <form method="post" action="/{{tutorial.title}}/delete">
         <button type="submit" class="delete_button"> Delete Tutorial </button>
       {{/if}}
