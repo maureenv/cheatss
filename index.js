@@ -17,7 +17,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 
 app.use("/public", express.static("public")) // the "/public" part can say anything its what shows up in URL, but "public" must say public.
-app.use(errorHandler);
+// app.use(errorHandler);
 app.use(logger('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true})); //makes body parser support html forms
@@ -230,21 +230,19 @@ app.post('/register', function(req, res, next) {
     });
 });
 
-
-app.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), function(req, res) {
+app.post('/login', passport.authenticate('local'), function(req, res) {
   Tutorial.find().sort({title:1}).then(function(tutorials){
-    res.render('login', {tutorials: tutorials}) // this will render tutorials in nav bar and any errors that may occur
-    /////// end code for form validator
+    res.render('login', {tutorials: tutorials})
     res.redirect('/');
   })
 });
 
-function errorHandler(err, req, res, next) {
-  var code = err.code;
-  var message = err.message;
-  res.writeHead(code, message, {'content-type' : 'text/plain'});
-  res.end(message);
-}
+// function errorHandler(err, req, res, next) {
+//   var code = err.code;
+//   var message = err.message;
+//   res.writeHead(code, message, {'content-type' : 'text/plain'});
+//   res.end(message);
+// }
 
 app.listen(app.get("port"), function(){
   console.log("I work on localhost:3001");
