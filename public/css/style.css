@@ -290,7 +290,7 @@ h3 {
   line-height: 1.4;
   font-family: 'Source Sans Pro', sans-serif, arial;
   margin-bottom: 20px;
-  margin-top: -20px;
+  margin-top: -10px;
 }
 
 .posted_by {
@@ -308,7 +308,7 @@ h3 {
   background-color: #1d1f20;
   width: 100%;
   margin-bottom: 20px;
-  color: #e2e2e2;
+  color: #d6d6d6;
   padding: 20px;
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
   overflow-x: scroll;
@@ -359,6 +359,10 @@ h3 {
 
 #codebracket {
   color: #bc00e4;
+}
+
+#csscoloring {
+  color: #ff861c;
 }
 
 #class {

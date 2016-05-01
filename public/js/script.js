@@ -48,7 +48,8 @@ function htmlHighlights(){
     var data = codeArray[i].innerHTML;
     data = data.replace(/"(.*?)"/g, '<span id="quote">"$1"</span>');
     data = data.replace(/'(.*?)'/g, "<span id='quote'>'$1'</span>");
-    data = data.replace(/&lt;(.*?)=/g, '&lt;<span id="codebracket">$1</span>=');
+    // data = data.replace(/&lt;(.*?)=/g, '&lt;<span id="codebracket">$1</span>=');
+    data = data.replace(/&lt;(.*?)&gt;/g, '<span id="codebracket">&lt;$1&gt;</span>');
     data = data.replace(/class/g, '<span id="class">class</span>');
     data = data.replace(/&lt;!--(.*?) --&gt;/g, '<span id="comment">&lt;!--$1--&gt;</span>');
     // data = data.replace(/&lt;(.*?)&gt;/g, '&lt;<span id="codebracket">$1</span>&gt;');
@@ -70,6 +71,9 @@ function cssHighlights(){
     // data = data.replace(/\{(.*?)\}/g, '{ <span id="codebracket">$1</span> }');
     data = data.replace(/"(.*?)"/g, '<span id="quote">"$1"</span>');
     data = data.replace(/'(.*?)'/g, "<span id='quote'>'$1'</span>");
+    data = data.replace(/\.(.*?){/g, "<span id='class'>.$1</span>{");
+    data = data.replace(/\}(.*?){/g, "}<span id='class'>$1</span>{");
+    data = data.replace(/:(.*?);/g, ":<span id='csscoloring'>$1</span>;");
     data = data.replace(/\/\* (.*?) \*\//g, '<span id="comment">/* $1 */</span>');
     codeArray[i].innerHTML = data;
   }
