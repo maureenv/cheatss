@@ -16,11 +16,7 @@
     {{{body}}}
   </div>
   <div class="sidebar">
-    {{#if user}}
-    <div class="footer"><a href="/" class="home_link"> Home </a><span class="line">|</span><a href="/logout" class="login_link"> Logout </a></div>
-    {{else}}
-    <div class="footer"><a href="/" class="home_link"> Home </a><span class="line">|</span><a href="/login" class="login_link"> Login </a></div>
-    {{/if}}
+    <div class="footer"><a href="/" class="home_link"> Home </a></div>
     {{#each tutorials as |tutorial|}}
     <a href="/{{tutorial.title}}" class="side_link"> {{tutorial.title}}</p>
     {{/each}}
