@@ -13,7 +13,7 @@
         <p class="label"> Username </p>
           <input type="text" onblur="this.value=removeSpaces(this.value);" name="username" placeholder = "Enter your username">
         <p class="label"> Password </p>
-        <input type="password" name="password" placeholder = "Password">
+        <input type="password" onblur="this.value=removeSpaces(this.value);" name="password" placeholder = "Password">
         <button type="submit" class="signup"> Login </button>
       </form>
     </div>
