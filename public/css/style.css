@@ -146,7 +146,7 @@ body{
   -webkit-box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
   -moz-box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
   box-shadow: 7px 0px 13px 3px rgba(6,26,79,0.52);
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 
 .heading {
