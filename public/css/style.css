@@ -121,6 +121,8 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  display:-webkit-flex;
+	-webkit-align-items:center;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -182,7 +184,8 @@ h2 {
   font-size: 20px;
   position: absolute;
   z-index: -10;
-  margin-left: -100px;
+  top: 0;
+  left: 220px;
   /* Make text unselectable */
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
@@ -242,21 +245,13 @@ _::-webkit-full-page-media, _:future, :root .safari_only {
 }
 
 _::-webkit-full-page-media, _:future, :root .heading {
-  padding-top: 25vh;
   margin: auto;
 }
 
-_::-webkit-full-page-media, _:future, :root .codeAnimate {
-  margin-left: 200px;
-}
+
 
 /* CSS for firefox ******************/
 @-moz-document url-prefix() {
-  .codeAnimate {
-    margin-top: -300px;
-    margin-left: -100px;
-  }
-
   .delete_button {
     margin-top: -54px;
   }
@@ -520,4 +515,31 @@ video {
 
 .signup {
   margin-top: 20px;
+}
+
+@media screen and (min-width: 1500px) {
+  h1 {
+    font-size: 200px;
+  }
+
+  .cheat {
+    font-size: 120px;
+  }
+
+  h2 {
+    font-size: 70px;
+  }
+
+  .heading {
+    max-width: 1200px;
+  }
+
+  .signin_text {
+    font-size: 40px;
+  }
+
+  .sheet {
+    width: 1000px;
+  }
+
 }
