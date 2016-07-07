@@ -394,7 +394,7 @@ input[type="password"]{
   font-size: 20px;
   width: 100%;
   background-color: rgba(0,0,0,0);
-  border: none;
+  border: 5px solid #cccccc;
   padding: 5px;
 }
 
@@ -412,7 +412,7 @@ textarea {
   height: 150px;
   font-family: monospace;
   white-space: pre;
-  border: none;
+  border: 5px solid #cccccc;
   background-color: rgba(0,0,0,0);
   resize: none;
 }

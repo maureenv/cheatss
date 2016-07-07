@@ -31,6 +31,7 @@ Account.remove({}).then(function(){
 //   });
 // }
 
+// remember to do npm init and npm install when using Node! 
 // check js file at http://jsonlint.com/
 
 // Steps for seeding file

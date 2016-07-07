@@ -16,10 +16,12 @@ return string.split(' ').join('');
 console.log(string);
 }
 
+/// adds active class to sidebar links
 $(".side_link").each(function(i,a){
   var path = ($(a).attr("href"));
   console.log(path);
   if (path == decodeURIComponent(
+    //URI can be classified as a locator, a name, or both (find link)
   window.location.pathname)){
     $(a).addClass("active")
   }
@@ -27,6 +29,7 @@ $(".side_link").each(function(i,a){
 
 /* animate through each letter */
 $.fn.retype = function(delay) {
+  //jQuery.fn === jQuery.prototype
     var el = this,
         t = el.text(),
         c = t.split(''),
@@ -41,7 +44,7 @@ $.fn.retype = function(delay) {
 
 $('.codeAnimate').retype();
 
-/* Syntax highlight for code */
+/* Syntax highlight for code replaces regular expressions(strings)*/
 function htmlHighlights(){
   var codeArray = document.getElementsByClassName("html");
   for(var i=0; i<codeArray.length; i++){
@@ -91,7 +94,7 @@ function codepen(){
   }
 }
 
-
+// the following events listen for "Load" before stasrting
 window.addEventListener("load", codepen);
 window.addEventListener("load", htmlHighlights);
 window.addEventListener("load", cssHighlights);

@@ -248,3 +248,6 @@ app.post('/login', passport.authenticate('local'), function(req, res) {
 app.listen(app.get("port"), function(){
   console.log("I work on localhost:3001");
 });
+
+/* Instructions for Heroku
+first do nodemon in console to view your code, if using database open new tab for mongod and mongo, then after you commit your changes and push to github do git push heroku master */
